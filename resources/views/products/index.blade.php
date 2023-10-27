@@ -14,7 +14,7 @@
     <main>
     <h1 class=" text-2xl mt-5">Products</h1>
     <div class=" ">
-        <table class=" w-full border-2 border-green-400 mt-3 rounded-xl">
+        <table class=" w-full mt-3 rounded-xl">
             <tr class=" text-start border-2">
                 <th class="text-start border">SN</th>
                 <th class=" text-start border">Name</th>
