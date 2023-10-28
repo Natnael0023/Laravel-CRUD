@@ -15,29 +15,35 @@
     <h1 class=" text-2xl mt-5">Products</h1>
     <div class=" ">
         <table class=" w-full mt-3 rounded-xl">
-            <tr class=" text-start border-2">
-                <th class="text-start border">SN</th>
-                <th class=" text-start border">Name</th>
-                <th class=" text-start border">Qty</th>
-                <th class=" text-start border">Description</th>
-                <th class=" text-start border">Price</th>
+            <tr class=" text-start">
+                <th class="text-start ">SN</th>
+                <th class="text-start ">Image</th>
+                <th class=" text-start ">Name</th>
+                <th class=" text-start ">Qty</th>
+                <th class=" text-start ">Description</th>
+                <th class=" text-start ">Price</th>
                 <th colspan="2">Action</th>
             </tr>
             @php $c = 1 @endphp
             @foreach($products as $p)
-                <tr class=" border">
-                    <td class=" text-start border">{{$c++ }}</td>
-                    <td class=" text-start border">{{$p->name}} </td>
-                    <td class=" text-start border">{{$p->qty}}</td>
-                    <td class=" text-start border">{{$p->description}} </td>
-                    <td class=" text-start border">{{$p->price}} </td>
-                    <td class=" text-center border">
-                        <a class=" bg-blue-500 border px-4" href="{{route('product.edit', ['product' => $p])}}">
+                <tr class=" border-b ">
+                    <td class=" text-start">{{$c++ }}</td>
+                    <td>
+                        <div class=" w-28 h-28 flex items-center">
+                            <img src="{{asset('images/'.$p->image)}}"   alt="" class=" rounded-xl">
+                        </div>
+                    </td>
+                    <td class=" text-start ">{{$p->name}} </td>
+                    <td class=" text-start ">{{$p->qty}}</td>
+                    <td class=" text-start ">{{$p->description}} </td>
+                    <td class=" text-start ">{{$p->price}} </td>
+                    <td class=" text-center ">
+                        <a class=" bg-blue-500 rounded-xl text-white p-2 px-4" href="{{route('product.edit', ['product' => $p])}}">
                             Edit
                         </a>
                     </td>
-                    <td class=" text-center border ">
-                        <a class=" bg-red-500 border px-3" href="{{route('product.delete', ['product' => $p])}}">
+                    <td class=" text-center  ">
+                        <a class=" bg-red-500 p-2 rounded-xl text-white  px-3" href="{{route('product.delete', ['product' => $p])}}">
                             Delete
                         </a>
                     </td>
@@ -46,7 +52,6 @@
         </table>
     </div>
    </main>
-
    <x-footer/>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <body class=" px-36">
    <x-nav now="create products"/>
 
-   <main>
+   <main class=" z-50">
     <h1 class=" text-2xl mt-5">Create Product</h1>
 
     <?php 
@@ -20,7 +20,7 @@
         }
     ?>
 
-    <form method="post" action='{{route('product.store')}}' class=" w-full lg:w-[30rem] md:w-[40rem] mx-auto flex flex-col gap-4 mt-4 border p-4 rounded-xl">
+    <form method="post" enctype="multipart/form-data" action='{{route('product.store')}}' class=" w-full lg:w-[30rem] md:w-[40rem] mx-auto flex flex-col gap-4 mt-4 border p-4 rounded-xl">
         @csrf
         @method('post')
         <div class=" flex flex-col justify-between">
@@ -35,13 +35,18 @@
         </div>
         <div class=" flex flex-col justify-between">
             <label for="">Description </label>
-            <textarea name="description" id=""  rows="4"
+            <textarea name="description" id=""  rows="1"
             type="text" placeholder="runner shoes" autocomplete="off"
             class=" p-2 border  rounded-xl"></textarea>
         </div>
         <div class=" flex flex-col justify-between"> 
             <label for="">Price </label>
             <input type="text" name="price" placeholder="75" autocomplete="off"
+            class=" p-2 border rounded-xl">
+        </div>
+        <div class=" flex flex-col justify-between"> 
+            <label for="">Image </label>
+            <input type="file" name="image"
             class=" p-2 border rounded-xl">
         </div>
         <div class=" flex flex-col justify-between mt-4">

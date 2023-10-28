@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -21,6 +22,17 @@ class ProductController extends Controller
     }
 
     public function update(Product $product, Request $request) {
+
+        if($request->hasFile('image')) {
+            $newImage = $request->file('image');
+            $imageName = time().'.'.$request->image->extension();
+            $newImage->move(public_path('images'),$imageName);
+            
+            $product->image = $imageName;
+        }
+
+        // dd($request);
+ 
         $product->update($request->all());
         return redirect(route('product.index'))->with('status','product updated successfully');
     }
@@ -31,11 +43,19 @@ class ProductController extends Controller
     }
 
     public function store(Request $request) {
-        // $newProduct = new Product;
-        // $newProduct -> name = $request->input('name');
-        // $newProduct -> qty = $request->input('qty');
-        // $newProduct -> description = $request->input('description');
-        // $newProduct -> price = $request->input('price');
+
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time().'.'.$request->image->extension();
+            $image->move(public_path('images'),$imageName);
+        }
+        $newProduct = new Product;
+        $newProduct -> name = $request->input('name');
+        $newProduct -> qty = $request->input('qty');
+        $newProduct -> description = $request->input('description');
+        $newProduct -> price = $request->input('price');
+        $newProduct-> image = $imageName;
+
 
         // $newProduct = $request->validate([
         //     'name' => ['required','max:255'],
@@ -44,7 +64,7 @@ class ProductController extends Controller
         //     'price'=> ['required', 'decimal:0,2']
         // ]);
 
-        Product::create($request->all());
+        $newProduct->save();
 
         return redirect(route('product.index'))->with('status','product added successfully');
     }
