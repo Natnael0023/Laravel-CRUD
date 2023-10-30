@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite('resources/css/app.css')
+    <div class="gradient">
+    </div>
 </head>
-<body class=" px-36">
+<body class=" px-6 lg:px-36">
     <x-nav now="update products"/>
     <main>
         <h1 class=" text-2xl mt-5">Update Product</h1>
@@ -20,19 +22,19 @@
            
             <div class=" flex-1">
                 <div class=" flex-1 flex flex-col ">
-                    <div class=" flex flex-col justify-between"> 
-                        <img src="{{asset('images/'.$product->image)}}" width="full" type="file" name="existingImg"
-                        class="flex-1 border rounded-xl">
+                    <div class=" flex flex-col  max-w-[400px] max-h-[400px] justify-between overflow-hidden rounded-xl"> 
+                        <img src="{{asset('images/'.$product->image)}}" width="" type="file" name="existingImg"
+                        class="flex-1 flex items-center border rounded-xl">
                     </div>
 
-                <div class=" flex flex-col justify-between"> 
-                    <label for="">Change Image </label>
-                    <input type="file" name="image"
-                    class=" p-2 border rounded-xl">
+                    <div class=" flex flex-col justify-between"> 
+                        <label for="">Change Image </label>
+                        <input type="file" name="image"
+                        class=" p-2 border rounded-xl">
+                    </div>
                 </div>
             </div>
-                
-            </div>
+
             <div class="  flex-1">
                 <fieldset class="border p-6 rounded-xl flex flex-col gap-4">
                     <legend class=" text-gray-400 italic"> Product details </legend>
@@ -42,8 +44,8 @@
                         class=" p-2 focus: rounded-xl border">
                     </div>
                     <div class=" flex flex-col justify-between">
-                        <label for="">Quantity </label>
-                        <input type="text" name="qty" value="{{$product->qty}}" placeholder="2" autocomplete="off"
+                        <label for="">InStock </label>
+                        <input type="text" name="inStock" value="{{$product->inStock}}" placeholder="2" autocomplete="off"
                         class=" p-2 focus: rounded-xl border">
                     </div>
                     <div class=" flex flex-col justify-between">
@@ -57,8 +59,7 @@
                         class=" p-2 focus: rounded-xl border">
                     </div>
 
-                   
-                    
+                
                     <div class=" flex flex-col justify-between">
                         <input type="submit" name="submit" value="Update"
                         class=" w-full bg-green-500 py-3 rounded-full font-semibold text-xl" >

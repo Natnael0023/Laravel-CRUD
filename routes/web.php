@@ -1,15 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
@@ -17,14 +19,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::post('/product', [ProductController::class, 'store'])->name('product.store');
 
-Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::get('/products',[ProductController::class, 'index'])->name('product.index');
 
-Route::put('/product/{product}/update', [ProductController::class, 'update'])->name('product.update');
+Route::get('/products/create',[ProductController::class , 'create'])->name('product.create');
 
-Route::get('/product/{product}/delete', [ProductController::class, 'delete'])->name('product.delete');
+Route::post('/products/create',[ProductController::class, 'store'])->name('product.store');
+
+Route::get('/products/{product}/edit',[ProductController::class, 'edit'])->name('product.edit');
+
+Route::put('/products/update/{product}',[ProductController::class, 'update'])->name('product.update');
+
+Route::get('/products/{product}',[ProductController::class,'delete'])->name('product.delete');
+
+
+require __DIR__.'/auth.php';

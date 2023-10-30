@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite('resources/css/app.css')
+    <div class="gradient">
+    </div>
 </head>
 <body class=" px-36">
    <x-nav now="create products"/>
@@ -25,29 +27,29 @@
         @method('post')
         <div class=" flex flex-col justify-between">
             <label for="">Name </label>
-            <input type="text" name="name" placeholder="adidas" autocomplete="off"
-            class=" p-2 focus: rounded-xl border">
+            <input type="text" name="name" placeholder="adidas" autocomplete="off" required
+            class=" p-2 focus: rounded-xl border text-black">
         </div>
         <div class=" flex flex-col justify-between">
-            <label for="">Quantity </label>
-            <input type="text" name="qty" placeholder="2" autocomplete="off"
-            class=" p-2 border  rounded-xl">
+            <label for="">In Stock </label>
+            <input type="text" name="inStock" placeholder="2" autocomplete="off" required
+            class=" p-2 border  rounded-xl text-black">
         </div>
         <div class=" flex flex-col justify-between">
             <label for="">Description </label>
             <textarea name="description" id=""  rows="1"
-            type="text" placeholder="runner shoes" autocomplete="off"
-            class=" p-2 border  rounded-xl"></textarea>
+            type="text" placeholder="runner shoes" autocomplete="off" required
+            class=" p-2 border  rounded-xl text-black"></textarea>
         </div>
         <div class=" flex flex-col justify-between"> 
             <label for="">Price </label>
-            <input type="text" name="price" placeholder="75" autocomplete="off"
-            class=" p-2 border rounded-xl">
+            <input type="text" name="price" placeholder="75" autocomplete="off" required
+            class=" p-2 border rounded-xl text-black">
         </div>
         <div class=" flex flex-col justify-between"> 
             <label for="">Image </label>
             <input type="file" name="image"
-            class=" p-2 border rounded-xl">
+            class=" p-2 border rounded-xl text-black">
         </div>
         <div class=" flex flex-col justify-between mt-4">
             <input type="submit" name="submit" value="Create"

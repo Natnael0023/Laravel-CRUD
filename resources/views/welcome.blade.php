@@ -11,7 +11,7 @@
     </head>
     <body class="antialiased px-[10rem] py-2">
         <x-nav/>
-        <p>Home</p>
-       <h1>Home page</h1>
+        <p>Dashboard</p>
+       <h1>Dashboard page</h1>
     </body>
 </html>

@@ -31,9 +31,24 @@ class ProductController extends Controller
             $product->image = $imageName;
         }
 
+        if($request->input('name')){
+            $product->name = $request->input('name');
+        }
+
+        if($request->input('inStock')){
+            $product->inStock = $request->input('inStock');
+        }
+
+        if($request->input('description')){
+            $product->description = $request->input('description');
+        }
+
+        if($request->input('price')){
+            $product->price = $request->input('price');
+        }
+
         // dd($request);
- 
-        $product->update($request->all());
+        $product->save();
         return redirect(route('product.index'))->with('status','product updated successfully');
     }
 
@@ -43,25 +58,28 @@ class ProductController extends Controller
     }
 
     public function store(Request $request) {
+        $newProduct = new Product;
 
         if($request->hasFile('image')) {
+
             $image = $request->file('image');
             $imageName = time().'.'.$request->image->extension();
+            
             $image->move(public_path('images'),$imageName);
+            $newProduct-> image = $imageName;
         }
-        $newProduct = new Product;
+
         $newProduct -> name = $request->input('name');
-        $newProduct -> qty = $request->input('qty');
+        $newProduct -> inStock = $request->input('inStock');
         $newProduct -> description = $request->input('description');
         $newProduct -> price = $request->input('price');
-        $newProduct-> image = $imageName;
 
-
-        // $newProduct = $request->validate([
+        // $validated = $request->validate([
         //     'name' => ['required','max:255'],
-        //     'qty' => ['required','numeric'],
+        //     'inStock' => ['required','numeric','max:1000'],
         //     'description' => ['required','max:255'],
-        //     'price'=> ['required', 'decimal:0,2']
+        //     'price'=> ['required','numeric', 'decimal:0,2'],
+        //     'image'=>['required'],
         // ]);
 
         $newProduct->save();
